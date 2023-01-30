@@ -22,13 +22,8 @@ public class PautaService {
     public ResponseEntity<String> cadastrarPauta(Map<String, String> requestMap) {
         try {
             if (validarCadastro(requestMap)) {
-                Pauta pauta = pautaRepository.findById(Long.valueOf(requestMap.get("id_pauta"))).get();
-                if (Objects.isNull(pauta)) {
-                    pautaRepository.save(getPautaMap(requestMap));
-                    return GeneralUtils.getResponseSuccess("Cadastro Realizado com Sucesso", HttpStatus.OK);
-                } else {
-                    return GeneralUtils.getResponseError(ExceptionEnum.PAUTA_JA_EXISTE, HttpStatus.BAD_REQUEST);
-                }
+                pautaRepository.save(getPautaMap(requestMap));
+                return GeneralUtils.getResponseSuccess("Cadastro Realizado com Sucesso", HttpStatus.OK);
             } else {
                 return GeneralUtils.getResponseError(ExceptionEnum.DADOS_INVALIDOS, HttpStatus.BAD_REQUEST);
             }
