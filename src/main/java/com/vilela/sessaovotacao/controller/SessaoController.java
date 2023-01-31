@@ -3,6 +3,7 @@ package com.vilela.sessaovotacao.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +20,10 @@ public class SessaoController {
     private SessaoService sessaoService;
 
     @PostMapping("/abrir-sessao")
-    public ResponseEntity abrirSessao(Long idPauta, Integer tempoAbertura) {
+    public ResponseEntity abrirSessao(@RequestBody Long idPauta, Integer tempoAbertura) {
         sessaoService.abrirSessao(idPauta, tempoAbertura);
         return ResponseEntity.ok().build();
     }
+
 
 }
