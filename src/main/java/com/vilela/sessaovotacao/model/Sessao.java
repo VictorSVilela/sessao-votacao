@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -20,22 +18,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tbl_votacao")
-public class Votacao implements Serializable {
+@Table(name = "tbl_sessao")
+public class Sessao implements Serializable {
 
     @Id
-    @Column(name = "id_votacao")
+    @Column(name = "id_sessao")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_votacao;
+    private Long id_sessao;
 
-    @Column(name = "voto")
-    private Boolean voto;
+    @Column(name="data_abertura")
+    private LocalDateTime dataAbertura;
 
-    @Column(name="dataVoto")
-    private LocalDateTime dataVoto;
+    @Column(name = "id_pauta")
+    private Long idPauta;
 
-    @ManyToOne
-    @JoinColumn(name = "id_sessao")
-    private Sessao sessao;
-
+    @Column(name = "tempo_abertura")
+    private Integer tempoAbertura = 1;
 }
